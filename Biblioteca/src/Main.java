@@ -28,28 +28,30 @@ public class Main
 
             switch (opcao) {
                 case 1:
-                    //adicionarLivro();
+                    adicionarLivro();
                     break;
                 case 2:
-                    //removerLivro();
+                    System.out.println("Insira o titulo: ");
+                    String titulo = scanner.nextLine();
+                    removerLivro(titulo, acervo);
                     break;
                 case 3:
-                    //listarLivros();
+                    listarLivros();
                     break;
                 case 4:
-                    //buscarLivro();
+                    buscarLivro();
                     break;
                 case 5:
-                    //emprestarLivro();
+                    emprestarLivro();
                     break;
                 case 6:
-                    //devolverLivro();
+                    devolverLivro();
                     break;
                 case 7:
-                    //adicionarUsuario();
+                    adicionarUsuario();
                     break;
                 case 8:
-                    //listarUsuarios();
+                    listarUsuarios();
                     break;
                 case 9:
                     System.out.println("Encerrando o programa");
@@ -58,5 +60,78 @@ public class Main
                     System.out.println("Opcao invalida");
             }
         } while (opcao != 9);
+    }
+
+    public static void adicionarLivro()
+    {
+
+        System.out.println("Digite o nome do livro: ");
+        String adicionarTitulo = scanner.nextLine();
+
+        System.out.println("Digite o nome do livro: ");
+        String adicionarAutor = scanner.nextLine();
+
+        System.out.println("Digite o nome do livro: ");
+        int adicionarAnoPublicacao = scanner.nextInt();
+
+        Livro adicionarLivro = new Livro(adicionarTitulo, adicionarAutor, adicionarAnoPublicacao, true);
+        acervo.add(adicionarLivro);
+    }
+
+    public static void removerLivro(String titulo, ArrayList<Livro> livros)
+    {
+        for(Livro livro : livros)
+        {
+            if( livro.getTitulo().equalsIgnoreCase(titulo))
+            {
+                livro = null;
+            }
+        }
+    }
+
+    public static void listarLivro(ArrayList<Livro> livros)
+    {
+        for(Livro livro : livros)
+        {
+            System.out.println("Titulo: " + livro.getTitulo() + " " +
+                        "Autor: " + livro.getAutor() + " " +
+                        "Ano de Publicação: " + livro.getAnoPublicacao() + " " +
+                        "Disponibilidade: " + livro.isDisponibilidade());
+        }
+    }
+
+    public static void buscarLivro(String titulo, ArrayList<Livro> livros)
+    {
+        for(Livro livro : livros)
+        {
+            if(livro.getTitulo().equalsIgnoreCase(titulo))
+            {
+                System.out.println("Titulo: " + livro.getTitulo() + '\n' +
+                        "Autor: " + livro.getAutor() + '\n' +
+                        "Ano de Publicação: " + livro.getAnoPublicacao() + '\n' +
+                        "Disponibilidade: " + livro.isDisponibilidade() + '\n');
+            }
+        }
+    }
+
+    public static void adicionarUsuario()
+    {
+
+        scanner.nextLine();
+        System.out.println("Digite o nome do usuario: ");
+        String adicionarNome = scanner.nextLine();
+
+        int id = usuarios.size();
+
+        Usuario adicionandoUsuario = new Usuario(adicionarNome, id);
+        usuarios.add(adicionandoUsuario);
+    }
+
+    public void listarUsuarios()
+    {
+        for(Usuario usuario : usuarios)
+        {
+            System.out.println("Nome: " + usuario.getNome() + " ID: " + usuario.getId());
+        }
     }
 }
